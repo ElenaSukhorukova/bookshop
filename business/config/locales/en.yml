@@ -1,0 +1,97 @@
+en:
+  currency: $
+  name: Bookshop
+
+  dry_validation:
+    errors:
+      format: 'has invalid format'
+      password_exclusion: should not be the same as your email
+      password_similarity: should be the same as password
+      unsupported_role: is not supported through this request
+
+  errors:
+    uncatched_error: Something went wrong
+    invalid_token: Reset token of the password is invalid
+    invalid_email: Email address was not found
+    blank_params: params is blank
+    invalid_params: params is invalid
+    pass_reset_expired: Password reset has expired
+    invalid_password_or_email: Invalid email or password
+    unactivated_account: Your account is not activated. Please check your email for the activation link.
+    activation_error: "Invalid activation link. Please, try again in %{period} minutes"
+    invalid_activation_token: activation token is not valid
+    alredy_activated: User has been already activated. Please, sign in with your current password
+
+  operations:
+    created_user:
+      check_email: Please, check your mail to activate your account
+    authentication_process:
+      successful_enter: Welcome to the Bookshop
+    initiate_password_reset:
+      check_email: Email with password reset instruction was sent
+    updation:
+      password_reset: Password has been reset
+    activation:
+      activated: Your account was activated
+
+  views:
+    nav:
+      about: About us
+      contacts: Contacts
+    about:
+      title: About us
+      text_html: <p>Welcome to our bookshop, where the love for reading comes to life! We are passionate about connecting readers with stories that inspire, educate, and entertain. Our carefully curated selection includes a wide range of genres, from classic literature to contemporary bestsellers, children's books to thought-provoking non-fiction.</p><p>At our bookshop, we believe in the power of books to transform lives and foster a sense of community. Whether you're searching for your next favorite read, a unique gift, or simply a cozy place to explore new ideas, we invite you to visit us. Our knowledgeable staff is always ready to offer personalized recommendations and help you discover hidden gems.</p><p>Join us for author events, book signings, and community gatherings as we celebrate the joy of reading together. Thank you for supporting our independent bookshop—where every book has a story, and every reader is part of our story.</p>
+    contacts:
+      title: Our contacts
+    forms:
+      email: Email
+      password: Password
+      password_confirmation: Pasword confirmation
+      remember_me: Remember me on this computer
+      birthday: Birthday
+      first_name: First name
+      last_name: Last name
+      phone_number: Phone number
+      terms_of_service: I agree with terms of the platform
+      terms: Terms
+    password_resets:
+      new:
+        title: Reset password
+        submit: Send
+      edit:
+        title: Password update
+        submit: Update password
+    sessions:
+      new:
+        title: Sign in
+        link: I forgot my password
+    users:
+      new:
+        title: New user
+    mfa_sessions:
+      new:
+        title: Google session
+    shared:
+      navbar:
+        sing_out: Sing out
+        sing_in: Sing in
+        sing_up: Sing up
+        profile: Profile
+        new_profile: Create profile
+    profiles:
+      new:
+        title: A new profile
+
+  user_mailer:
+    account_activation:
+      subject: Account activation
+      link: Activate account
+      title: Hello, %{email}
+      click_on: Click on the link to activate your account
+    password_reset:
+      subject: Password reset
+      title: Hello, %{email}
+      click_on: Click on the link to reset password
+      link: Reset password
+      expiration_note_html: "<p>This link will expire in 15 minutes</p>\
+        <p>If you did not request your password to be reset, please ignore this email and your password will stay as it is.</p>"

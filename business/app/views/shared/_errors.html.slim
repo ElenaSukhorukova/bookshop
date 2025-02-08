@@ -1,0 +1,6 @@
+- if model.errors.any?
+  div
+    u
+      - model.errors.each do |error|
+        li
+          = error.full_message

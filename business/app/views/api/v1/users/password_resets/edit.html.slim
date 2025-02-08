@@ -1,0 +1,18 @@
+- content_for :title do
+  = t('views.password_resets.edit.title')
+
+.container
+  section.main__block
+    h1.header = t('views.password_resets.edit.title')
+
+    = form_for(:password_reset, url: password_reset_path(params[:id]), method: 'put', id: 'edit_password') do |f|
+      = f.hidden_field :email, value: @user.email
+      = f.hidden_field :id, value: params[:id]
+      div
+        = f.label :password, t('views.forms.password')
+        = f.password_field :password
+      div
+        = f.label :password_confirmation, t('views.forms.password_confirmation')
+        = f.password_field :password_confirmation
+      div
+        = f.submit t('views.password_resets.edit.submit')

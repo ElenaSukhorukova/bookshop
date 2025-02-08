@@ -1,0 +1,13 @@
+- content_for :title do
+  = t('views.password_resets.new.title')
+
+.container
+  section.main__block
+    h1.header = t('views.password_resets.new.title')
+
+    = form_for(:password_reset, url: password_resets_path, id: 'password_reset' ) do |f|
+      div
+        = f.label :email, t('views.forms.email')
+        = f.email_field :email
+      div
+        = f.submit t('views.password_resets.new.submit')

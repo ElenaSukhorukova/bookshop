@@ -1,0 +1,47 @@
+header
+  nav.navbar.navbar-dark.bg-dark
+    div.container-fluid
+      / = link_to root_path do
+      /   = image_tag "logo.png", class: "menu__logo"
+      = link_to t('name'), root_path, class: "navbar-brand"
+
+      button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+      div#navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav
+          li.nav-item
+            = link_to t('views.nav.about'), about_path, class: "nav-link active", 'aria-current': "page"
+          li.nav-item
+            = link_to t('views.nav.contacts'), contacts_path, class: "nav-link"
+      /   li.menu__item
+      /     = link_to '/', 'data-target': 'collapse-sign', class: 'collapse' do
+      /       i.fa-regular.fa-user
+      /     div#collapse-sign.menu__collapse-content.hidden
+      /       ul.menu__collapse-content__list
+      /         - if current_user.present?
+      /           - if current_user.profile && current_user.profile.persisted?
+      /             li.menu__collapse-content__list__item
+      /               = link_to t('views.shared.navbar.profile'), profile_path(current_user.profile), class: "menu__link menu__link_black"
+      /           - else
+      /             li.menu__collapse-content__list__item
+      /               = link_to t('views.shared.navbar.new_profile'), new_user_profile_path(current_user), class: "menu__link menu__link_black"
+      /           li.menu__collapse-content__list__item
+      /             = button_to t('views.shared.navbar.sing_out'), signout_path, class: "menu__link menu__link_black",
+      /               data: { turbo: false }
+      /         - else
+      /           li.menu__collapse-content__list__item
+      /             = link_to t('views.shared.navbar.sing_in'), signin_path, class: "menu__link menu__link_black"
+      /           li.menu__collapse-content__list__item
+      /             = link_to t('views.shared.navbar.sing_up'), new_user_path, class: "menu__link menu__link_black"
+
+      /   li.menu__item
+      /     = link_to '/', 'data-target': 'collapse-language', class: 'collapse' do
+      /       i.fa-solid.fa-language
+      /     div#collapse-language.menu__collapse-content.language.hidden
+      /       ul.menu__collapse-content__list
+      /         li.menu__collapse-content__list__item
+      /           = link_to '/', id: 'russian_lang' do
+      /             = image_tag "rus.png", class: "language__image"
+      /         li.menu__collapse-content__list__item
+      /           = link_to '/', id: 'english_lang' do
+      /             = image_tag "en.png", class: "language__image"

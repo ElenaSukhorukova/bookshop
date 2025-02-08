@@ -1,0 +1,4 @@
+.container
+  h1 = t('.title', email: @user.email)
+  p = t('.click_on')
+  = link_to t('.link'), edit_account_activation_url(id: @token, locale: I18n.locale)

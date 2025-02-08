@@ -1,0 +1,6 @@
+.container
+
+  - unless flash.empty?
+    - flash.each do |type, msg|
+      .flash*{ class: [type] }
+        = msg

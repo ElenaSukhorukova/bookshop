@@ -1,0 +1,91 @@
+services:
+
+  redis:
+    image: 'bitnami/redis:latest'
+    command: redis-server
+    volumes:
+      - redis_data:/data
+    environment:
+      REDIS_ALLOW_EMPTY_PASSWORD: ${REDIS_ALLOW_EMPTY_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+    ports:
+      - '6379:6379'
+
+  postgresql:
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    healthcheck:
+        test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  business:
+    image: business:latest
+    build: ./business
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/business
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    depends_on:
+      - postgresql
+      - redis
+
+  buisness_sidekiq:
+    image: buisness_sidekiq:latest
+    build: ./business
+    command: bundle exec sidekiq
+    volumes:
+      - .:/business
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    depends_on:
+      - redis
+
+  core-front:
+    image: core-front:latest
+    build: ./core-front
+    ports:
+      - "3000:3000"
+    volumes:
+     - .:/core-front
+     - node_modules:/app/node_modules
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      CORE_URL: ${CORE_URL}
+    stdin_open: true
+    tty: true
+    command: npm start
+
+  core:
+    image: core
+    build: ./core
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/core
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+      DB_USER: ${DB_USER}
+    depends_on:
+      - postgresql
+      - redis
+
+volumes:
+  postgres_data:
+  redis_data:
+  node_modules:

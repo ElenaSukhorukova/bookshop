@@ -1,0 +1,29 @@
+- content_for :title do
+  = t('views.contacts.title')
+
+  h3=t('views.contacts.title')
+
+  div.row
+    h3=t('views.contacts.title')
+    div.col
+      div itemscope itemtype="http://schema.org/Organization"
+        span itemprop="name" =t('name')
+
+        div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"
+          | Адрес:
+          span itemprop="streetAddress"
+            | Льва Толстого, 16
+          span itemprop="postalCode">
+            | 119021
+          span itemprop="addressLocality"
+            | Москва
+        p | Телефон:
+          span itemprop="telephone"
+            | +7 495 739–70–00
+        p | Факс:
+          span itemprop="faxNumber"
+            | +7 495 739–70–70
+        p | Электронная почта:
+          span itemprop="email"
+            | pr@yandex-team.ru
+    div.col

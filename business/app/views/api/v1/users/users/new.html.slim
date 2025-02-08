@@ -1,0 +1,23 @@
+- content_for :title do
+  = t('views.users.new.title')
+
+.container
+  section.main__block
+    h2.header = t('views.users.new.title')
+
+    = form_with url: users_path, model: @user, id: 'new_user' do |f|
+      = f.hidden_field :role, value: 'customer'
+      div
+        = f.label :email, t('views.forms.email'), required: true
+        = f.email_field :email, value: @user&.email
+      div
+        = f.label :password, t('views.forms.password'), required: true
+        = f.password_field :password
+      div
+        = f.label :password_confirmation, t('views.forms.password_confirmation'), required: true
+        = f.password_field :password_confirmation
+      div
+        = f.submit
+
+    div
+      = render 'shared/google_authentication'
