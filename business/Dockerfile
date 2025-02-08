@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.0.2
+ARG RUBY_VERSION=3.1.2
 
 FROM ruby:${RUBY_VERSION}-bullseye
 
@@ -49,9 +49,10 @@ RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
 RUN corepack enable
 
 COPY package.json /app/package.json
-# COPY .yarn /app/.yarn
-# COPY yarn.lock /app/yarn.lock
-# RUN yarn install
+COPY package-lock.json /app/package-lock.json
+COPY .yarn /app/.yarn
+COPY yarn.lock /app/yarn.lock
+RUN yarn install
 
 # Copy application code
 COPY . /app
