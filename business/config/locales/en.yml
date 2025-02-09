@@ -78,6 +78,7 @@ en:
         sing_up: Sing up
         profile: Profile
         new_profile: Create profile
+        personalization: Personalization
     profiles:
       new:
         title: A new profile

@@ -86,7 +86,8 @@ ru:
         sing_in: Войти
         sing_up: Зарегистрироваться
         profile: Profile
-        new_profile: Create profile
+        new_profile: Создать профиль
+        personalization: Персонализация
     profiles:
       new:
         title: Новый профиль

@@ -1,38 +1,41 @@
 header
-  nav.navbar.navbar-dark.bg-dark
+  nav.navbar.navbar-dark.bg-dark.navbar-expand-lg
     div.container-fluid
-      / = link_to root_path do
-      /   = image_tag "logo.png", class: "menu__logo"
-      = link_to t('name'), root_path, class: "navbar-brand"
+      = link_to root_path do
+        = image_tag "logo.png", class: "navbar-brand menu__logo"
+      = link_to t('name'), root_path, class: "navbar-brand ml-5"
 
-      button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+      button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"
         span.navbar-toggler-icon
-      div#navbarNavDropdown.collapse.navbar-collapse
-        ul.navbar-nav
+      div#navbarContent.collapse.navbar-collapse
+        ul.navbar-nav.me-auto.mb-2.mb-lg-0
           li.nav-item
             = link_to t('views.nav.about'), about_path, class: "nav-link active", 'aria-current': "page"
           li.nav-item
             = link_to t('views.nav.contacts'), contacts_path, class: "nav-link"
-      /   li.menu__item
-      /     = link_to '/', 'data-target': 'collapse-sign', class: 'collapse' do
-      /       i.fa-regular.fa-user
-      /     div#collapse-sign.menu__collapse-content.hidden
-      /       ul.menu__collapse-content__list
-      /         - if current_user.present?
-      /           - if current_user.profile && current_user.profile.persisted?
-      /             li.menu__collapse-content__list__item
-      /               = link_to t('views.shared.navbar.profile'), profile_path(current_user.profile), class: "menu__link menu__link_black"
-      /           - else
-      /             li.menu__collapse-content__list__item
-      /               = link_to t('views.shared.navbar.new_profile'), new_user_profile_path(current_user), class: "menu__link menu__link_black"
-      /           li.menu__collapse-content__list__item
-      /             = button_to t('views.shared.navbar.sing_out'), signout_path, class: "menu__link menu__link_black",
-      /               data: { turbo: false }
-      /         - else
-      /           li.menu__collapse-content__list__item
-      /             = link_to t('views.shared.navbar.sing_in'), signin_path, class: "menu__link menu__link_black"
-      /           li.menu__collapse-content__list__item
-      /             = link_to t('views.shared.navbar.sing_up'), new_user_path, class: "menu__link menu__link_black"
+          li.nav-item.dropdown
+            div.dropdown
+              a.nav-link.dropdown-toggle href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color=white;"
+                = t('views.shared.navbar.personalization')
+              ul.dropdown-menu aria-labelledby="navbarDropdown"
+                - if current_user.present?
+                  li
+                    = button_to t('views.shared.navbar.sing_out'), signout_path, class: "dropdown-item", data: { turbo: false }
+                  li
+                    hr.dropdown-divider
+                  - if current_user.profile && current_user.profile.persisted?
+                    li
+                      = link_to t('views.shared.navbar.profile'), profile_path(current_user.profile), class: "dropdown-item"
+                  - else
+                    li
+                      = link_to t('views.shared.navbar.new_profile'), new_user_profile_path(current_user), class: "dropdown-item"
+                - else
+                  li
+                    = link_to t('views.shared.navbar.sing_in'), signin_path, class: "dropdown-item"
+                  li
+                    hr.dropdown-divider
+                  li
+                    = link_to t('views.shared.navbar.sing_up'), new_user_path, class: "dropdown-item"
 
       /   li.menu__item
       /     = link_to '/', 'data-target': 'collapse-language', class: 'collapse' do
