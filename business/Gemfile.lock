@@ -440,8 +440,6 @@ GEM
       racc (~> 1.5)
       sexp_processor (~> 4.16)
     rubyzip (2.4.1)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -537,7 +535,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
-  bootstrap-sass
+  bootstrap-sass (~> 3.4.1)
   brakeman
   capybara
   cssbundling-rails (~> 1.4)
@@ -573,8 +571,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.15)
   rubocop-rails (~> 2.17)
   rubocop-rspec (~> 2.16.0)
-  sass-rails
-  sassc-rails
+  sassc-rails (>= 2.1.0)
   selenium-devtools (~> 0.122)
   shoulda-matchers
   sidekiq (~> 7.3.6)
