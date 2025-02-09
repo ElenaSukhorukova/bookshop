@@ -49,6 +49,9 @@ Rails.application.configure do
     openssl_verify_mode: 'none'
   }
 
+  # https://github.com/rails/propshaft/tree/main?tab=readme-ov-file#improving-performance-in-development
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
   config.default_url_options = { host: 'localhost', port: 5000 }
 
   # Set localhost to be used by links generated in mailer templates.
@@ -64,6 +67,8 @@ Rails.application.configure do
   config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
+
+  config.active_support.to_time_preserves_timezone = :zone
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
