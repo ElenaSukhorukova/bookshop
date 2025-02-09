@@ -9,14 +9,13 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>
+  database: <%= ENV['DEV_DB_NAME'] %>
 
 test:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>
+  database: <%= ENV['TEST_DB_NAME'] %>
 
 production:
-  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
   connect_timeout: 5
   variables:
