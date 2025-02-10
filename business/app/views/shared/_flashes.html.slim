@@ -2,5 +2,5 @@
 
   - unless flash.empty?
     - flash.each do |type, msg|
-      .flash*{ class: [type] }
+      div class="alert alert-#{type}" role="alert"
         = msg

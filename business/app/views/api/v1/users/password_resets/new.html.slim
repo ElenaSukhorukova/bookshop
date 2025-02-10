@@ -1,13 +1,15 @@
 - content_for :title do
   = t('views.password_resets.new.title')
 
-.container
-  section.main__block
-    h1.header = t('views.password_resets.new.title')
-
-    = form_for(:password_reset, url: password_resets_path, id: 'password_reset' ) do |f|
-      div
-        = f.label :email, t('views.forms.email')
-        = f.email_field :email
-      div
-        = f.submit t('views.password_resets.new.submit')
+section.card.col-md-6.mb-3.mt-3.content
+  div.row.g-0
+    div.card-body
+      h5.card-title
+        = t('views.password_resets.new.title')
+      div.card-text
+        = form_for(:password_reset, url: password_resets_path, id: 'password_reset' ) do |f|
+          div.mb-3
+            = f.label :email, t('views.forms.email'), required: true, class: 'form-label'
+            = f.email_field :email, class: 'form-control'
+          div.mb-3
+            = f.submit t('views.password_resets.new.submit'), class: "btn btn-dark"

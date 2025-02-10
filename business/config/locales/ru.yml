@@ -59,10 +59,10 @@ ru:
       city: New York
       phone_title: Телефон
       phone: +956-369-369
-      fax_title: Fax number
+      fax_title: Номер факса
       fax: +956-369-123
       email_title: Электронная почта
-      email: book_buy@gmail.com
+      email: 'book_buy@gmail.com'
     forms:
       email: Электронная почта
       password: Пароль

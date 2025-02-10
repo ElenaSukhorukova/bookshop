@@ -57,9 +57,6 @@ RUN yarn install
 # Copy application code
 COPY . /app
 
-# Precompile assets (optional, if using Rails with assets)
-# RUN ./bin/rails assets:precompile
-
 # Entrypoint prepares the database.
 ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
