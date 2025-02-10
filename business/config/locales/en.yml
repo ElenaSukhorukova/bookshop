@@ -43,6 +43,17 @@ en:
       text_html: <p>Welcome to our bookshop, where the love for reading comes to life! We are passionate about connecting readers with stories that inspire, educate, and entertain. Our carefully curated selection includes a wide range of genres, from classic literature to contemporary bestsellers, children's books to thought-provoking non-fiction.</p><p>At our bookshop, we believe in the power of books to transform lives and foster a sense of community. Whether you're searching for your next favorite read, a unique gift, or simply a cozy place to explore new ideas, we invite you to visit us. Our knowledgeable staff is always ready to offer personalized recommendations and help you discover hidden gems.</p><p>Join us for author events, book signings, and community gatherings as we celebrate the joy of reading together. Thank you for supporting our independent bookshop—where every book has a story, and every reader is part of our story.</p>
     contacts:
       title: Our contacts
+      name: Ltd. Bookshop
+      address_title: Address
+      address: 2d Avenue, 16
+      postalcode: 12345
+      city: New York
+      phone_title: Phone
+      phone: +956-369-369
+      fax_title: Fax number
+      fax: +956-369-123
+      email_title: Email
+      email: 'book_buy@gmail.com'
     forms:
       email: Email
       password: Password
@@ -78,6 +89,8 @@ en:
         sing_up: Sing up
         profile: Profile
         new_profile: Create profile
+        personalization: Personalization
+        language: Language
     profiles:
       new:
         title: A new profile

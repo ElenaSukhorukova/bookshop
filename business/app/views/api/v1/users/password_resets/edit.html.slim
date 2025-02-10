@@ -1,18 +1,21 @@
 - content_for :title do
   = t('views.password_resets.edit.title')
 
-.container
-  section.main__block
-    h1.header = t('views.password_resets.edit.title')
+section.card.col-md-6.mb-3.mt-3.content
+  div.row.g-0
+    div.card-body
+      h5.card-title
+        = t('views.password_resets.edit.title')
+      div.card-text
+        = form_for(:password_reset, url: password_reset_path(params[:id]), method: 'put', id: 'edit_password') do |f|
+          = f.hidden_field :email, value: @user.email
+          = f.hidden_field :id, value: params[:id]
+          div.mb-3
+            = f.label :password, t('views.forms.password'), required: true, class: 'form-label'
+            = f.password_field :password, class: 'form-control'
+          div.mb-3
+            = f.label :password_confirmation, t('views.forms.password_confirmation'), required: true, class: 'form-label'
+            = f.password_field :password_confirmation, class: 'form-control'
+          div.mb-3
+            = f.submit t('views.password_resets.edit.submit'), class: "btn btn-dark"
 
-    = form_for(:password_reset, url: password_reset_path(params[:id]), method: 'put', id: 'edit_password') do |f|
-      = f.hidden_field :email, value: @user.email
-      = f.hidden_field :id, value: params[:id]
-      div
-        = f.label :password, t('views.forms.password')
-        = f.password_field :password
-      div
-        = f.label :password_confirmation, t('views.forms.password_confirmation')
-        = f.password_field :password_confirmation
-      div
-        = f.submit t('views.password_resets.edit.submit')

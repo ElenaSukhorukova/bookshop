@@ -38,7 +38,7 @@ class User < ApplicationRecord
 
   # customer employee admin
   attribute :role, :enum
-  enum :role, array_to_enum_hash(EnumLists::USER_ROLES), _prefix: :role, validate: true
+  enum :role, array_to_enum_hash(EnumLists::USER_ROLES), prefix: :role, validate: true
 
   normalizes :email, with: ->(email) { email.strip.downcase }
 
