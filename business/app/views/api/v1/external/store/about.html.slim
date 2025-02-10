@@ -1,6 +1,13 @@
 - content_for :title do
   = t('views.about.title')
 
-  h3=t('views.about.title')
-
-= t('views.about.text_html')
+section.card.mb-3.mt-3.content
+  div.row.g-0
+    div.col-md-4.mt-5.ms-2
+      = image_tag "about.jpg", class: "img-fluid rounded-start", alt: "Foto our shop"
+    div.col-md-7
+      div.card-body
+        h5.card-title
+          = t('views.about.title')
+        p.card-text
+          = t('views.about.text_html')

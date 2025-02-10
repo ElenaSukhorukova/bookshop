@@ -79,6 +79,7 @@ en:
         profile: Profile
         new_profile: Create profile
         personalization: Personalization
+        language: Language
     profiles:
       new:
         title: A new profile

@@ -1,0 +1,37 @@
+- content_for :title do
+  = t('views.contacts.title')
+
+head
+  script async src="https://static.elfsight.com/platform/platform.js"
+
+section.card.mb-3.mt-3.content
+  div.row.g-0
+    div.col-md-4.mt-5.ms-2
+      div['data-elfsight-app-lazy'=true].elfsight-app-e5d47ea1-86f3-434c-bef5-3653e9e603eb
+
+    div.col-md-7
+      div.card-body
+        h5.card-title
+          = t('views.contacts.title')
+        p.card-text
+          div[itemscope=true] itemtype="http://schema.org/Organization"
+            span itemprop="name"
+              = t('views.contacts.address_title')
+
+            div[itemscope=true] itemprop="address" itemtype="http://schema.org/PostalAddress"
+                = t('views.contacts.name')
+              span itemprop="streetAddress"
+                = t('views.contacts.address')
+              span itemprop="postalCode">
+                = t('views.contacts.postalcode')
+              span itemprop="addressLocality"
+                = t('views.contacts.city')
+            div = t('views.contacts.phone_title')
+              span itemprop="telephone"
+                = t('views.contacts.phone')
+            div = t('views.contacts.fax_title')
+              span itemprop="faxNumber"
+                = t('views.contacts.fax')
+            div = t('views.contacts.email_title')
+              span itemprop="email"
+                = t('views.contacts.email')
