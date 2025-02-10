@@ -1,4 +1,9 @@
-.container
-  h1 = t('.title', email: @user.email)
-  p = t('.click_on')
-  = link_to t('.link'), edit_account_activation_url(id: @token, locale: I18n.locale)
+section.card.col-md-6.mb-3.mt-3.content
+  div.row.g-0
+    div.card-body
+      h5.card-title
+        = t('.title', email: @user.email)
+      div.card-text
+        p
+          = t('.click_on')
+        = link_to t('.link'), edit_account_activation_url(id: @token, locale: I18n.locale), class: "link-dark"

@@ -12,13 +12,15 @@ module Users
       validation = validate_params
 
       unless validation.success?
-        return fail_result(type: :invalid_params,
-                           msg: validation.errors(full: true).to_h.values.flatten.join('; '))
+        return fail_result( user: user,
+                            type: :invalid_params,
+                            msg: validation.errors(full: true).to_h.values.flatten.join('; ') )
       end
 
       unless user.save
-        return fail_result(type: :invalid_params,
-                           msg: user.errors.full_messages.join('; '))
+        return fail_result( user: user,
+                            type: :invalid_params,
+                            msg: user.errors.full_messages.join('; ') )
       end
 
       DeletionUnactivatedUserWorker.perform_in(WATING_MINUTES, user.id)

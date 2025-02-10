@@ -2,10 +2,9 @@
 
 class Api::V1::Users::SessionsController < Api::V1::ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[omniauth]
+  before_action :init_session, only: %i[new create]
 
-  def new
-    @session = Session.new
-  end
+  def new; end
 
   def create
     operation = Sessions::SessionProcess.call(params: permit_params(:session))
@@ -49,5 +48,11 @@ class Api::V1::Users::SessionsController < Api::V1::ApplicationController
 
         redirect_to root_path, info: result[:msg]
       end
+  end
+
+  private
+
+  def init_session
+    @session = Session.new
   end
 end

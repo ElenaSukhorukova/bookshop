@@ -17,6 +17,27 @@ ru:
       password_exclusion: не должен совпадать с вашим адресом электронной почты
       password_similarity: должeн быть таким же, как пароль
       unsupported_role: не поддерживается в этом запросе
+      min_size?:
+        password: размер должен быть %{num}"
+      filled?:
+        password_confirmation: должен быть заполнен
+
+      #   value:
+      #     string:
+      #       arg:
+      #         default: "length must be %{num}"
+      #         range: "length must be within %{left} - %{right}"
+
+      # filled?: "must be filled"
+
+      # included_in?: "must be one of %{list}"
+      # excluded_from?: "must not be one of: %{list}"
+
+      # min_size:
+      # filled: должен быть заполнен
+      # rules:
+      #   password:
+      #   password_confirmation:
 
   errors:
     uncatched_error: Что-то пошло не так

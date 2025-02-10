@@ -1,13 +1,9 @@
 services:
 
-  redis-service:
-    image: 'bitnami/redis:latest'
-    command: "redis-server --protected-mode no"
-    volumes:
-      - redis_data:/data
-    environment:
-      REDIS_ALLOW_EMPTY_PASSWORD: ${REDIS_ALLOW_EMPTY_PASSWORD}
-      REDIS_HOST: ${REDIS_HOST}
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: redis-server
     ports:
       - '6379:6379'
     healthcheck:
@@ -15,6 +11,10 @@ services:
       interval: 1s
       timeout: 3s
       retries: 5
+    volumes:
+      - redis_data:/data
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
 
   postgresql:
     image: 'postgres:latest'
@@ -40,12 +40,10 @@ services:
       - .:/business
     environment:
       RAILS_ENV: ${RAILS_ENV}
-      DB_HOST: ${DB_HOST}
-      DB_USER: ${DB_USER}
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     depends_on:
       - postgresql
-      - redis-service
+      - redis
 
   buisness_sidekiq:
     image: buisness_sidekiq:latest
@@ -55,11 +53,9 @@ services:
       - .:/business
     environment:
       RAILS_ENV: ${RAILS_ENV}
-      REDIS_URL: ${REDIS_URL}
-      REDIS_HOST: ${REDIS_HOST}
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     depends_on:
-      redis-service:
+      redis:
         condition: service_healthy
 
   core-front:
@@ -89,7 +85,7 @@ services:
       DB_USER: ${DB_USER}
     depends_on:
       - postgresql
-      - redis-service
+      - redis
 
 volumes:
   postgres_data:

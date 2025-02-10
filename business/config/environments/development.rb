@@ -68,6 +68,8 @@ Rails.application.configure do
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
+  # DEPRECATION WARNING: `to_time` will always preserve the full timezone rather than offset of the receiver in
+  # Rails 8.1. To opt in to the new behavior, set `config.active_support.to_time_preserves_timezone = :zone`.
   config.active_support.to_time_preserves_timezone = :zone
 
   # Raise an error on page load if there are pending migrations.
