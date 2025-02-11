@@ -2,6 +2,13 @@ en:
   currency: $
   name: Bookshop
 
+  api:
+    v1:
+      users:
+        profiles:
+          new:
+            blank_user: User can't be blank
+
   dry_validation:
     errors:
       format: 'has invalid format'

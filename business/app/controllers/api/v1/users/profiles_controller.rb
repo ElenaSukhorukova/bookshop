@@ -2,6 +2,11 @@ class Api::V1::Users::ProfilesController < Api::V1::ApplicationController
   before_action :define_user
 
   def new
+    if @user.blank?
+
+      redirect_to(root_path, danger: t('.blank_user')) and return
+    end
+
     @profile = @user.build_profile
   end
 

@@ -23,7 +23,7 @@ module Users
                             msg: user.errors.full_messages.join('; ') )
       end
 
-      DeletionUnactivatedUserWorker.perform_in(WATING_MINUTES, user.id)
+      # DeletionUnactivatedUserWorker.perform_in(WATING_MINUTES, user.id)
 
       Success result: { user: user }
     end

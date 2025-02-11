@@ -1,6 +1,14 @@
 ru:
   currency: ₽
   name: Книжный магазин
+
+  api:
+    v1:
+      users:
+        profiles:
+          new:
+            blank_user: Пользователь не может быть пустым
+
   activerecord:
     models:
       user:
@@ -21,23 +29,6 @@ ru:
         password: размер должен быть %{num}"
       filled?:
         password_confirmation: должен быть заполнен
-
-      #   value:
-      #     string:
-      #       arg:
-      #         default: "length must be %{num}"
-      #         range: "length must be within %{left} - %{right}"
-
-      # filled?: "must be filled"
-
-      # included_in?: "must be one of %{list}"
-      # excluded_from?: "must not be one of: %{list}"
-
-      # min_size:
-      # filled: должен быть заполнен
-      # rules:
-      #   password:
-      #   password_confirmation:
 
   errors:
     uncatched_error: Что-то пошло не так
