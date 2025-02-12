@@ -50,8 +50,6 @@ RUN corepack enable
 
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
-COPY .yarn /app/.yarn
-COPY yarn.lock /app/yarn.lock
 RUN yarn install
 
 # Copy application code
