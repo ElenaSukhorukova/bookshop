@@ -37,18 +37,12 @@ services:
     ports:
       - '9000:9000'
       - '9001:9001'
-    # networks:
-    #   - minio
     volumes:
       - 'minio:/bitnami/minio/data'
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
       MINIO_DEFAULT_BUCKETS: ${MINIO_DEFAULT_BUCKETS}
-
-  # networks:
-  #   minio:
-  #     driver: bridge
 
   business:
     image: business:latest
