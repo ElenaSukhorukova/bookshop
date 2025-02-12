@@ -29,7 +29,7 @@ Rails.application.configure do
   config.cache_store = :memory_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :minio
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -68,6 +68,8 @@ Rails.application.configure do
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
+  # DEPRECATION WARNING: `to_time` will always preserve the full timezone rather than offset of the receiver in
+  # Rails 8.1. To opt in to the new behavior, set `config.active_support.to_time_preserves_timezone = :zone`.
   config.active_support.to_time_preserves_timezone = :zone
 
   # Raise an error on page load if there are pending migrations.

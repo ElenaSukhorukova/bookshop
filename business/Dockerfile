@@ -57,6 +57,12 @@ RUN yarn install
 # Copy application code
 COPY . /app
 
+# https://github.com/Shopify/bootsnap#precompilation
+RUN bundle exec bootsnap precompile --gemfile app/ lib/
+
+# Precompiling assets without requiring secret RAILS_MASTER_KEY
+# RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
