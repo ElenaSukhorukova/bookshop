@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.0.2
+ARG RUBY_VERSION=3.2.0
 
 FROM ruby:${RUBY_VERSION}-bullseye
 
@@ -42,6 +42,9 @@ RUN gem install bundler && bundle install
 
 # Copy application code
 COPY . /app
+
+# https://github.com/Shopify/bootsnap#precompilation
+RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 # Precompile assets (optional, if using Rails with assets)
 # RUN bundle exec rake assets:precompile
