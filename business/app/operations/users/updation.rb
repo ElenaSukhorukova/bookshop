@@ -19,11 +19,9 @@ module Users
                            msg: validation.errors(full: true).to_h.values.flatten.join('; '))
       end
 
-      ActiveRecord::Base.transaction do
-        unless user.update(params_for_updation)
-          return fail_result(type: :invalid_params,
-                             msg: user.errors.full_messages.join('; '))
-        end
+      unless user.update(params_for_updation)
+        return fail_result(type: :invalid_params,
+                            msg: user.errors.full_messages.join('; '))
       end
 
       Success result: { user: user, msg: I18n.t('operations.updation.password_reset') }

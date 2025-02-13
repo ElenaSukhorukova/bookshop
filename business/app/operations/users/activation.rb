@@ -10,7 +10,7 @@ module Users
         return fail_result(msg: I18n.t('errors.activation_error', period: count_period))
       end
 
-      ActiveRecord::Base.transaction { user.activate }
+      user.activate
 
       Success result: { msg: I18n.t('operations.activation.activated'), user: user }
     end

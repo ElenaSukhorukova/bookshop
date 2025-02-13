@@ -8,9 +8,7 @@ module PasswordReset
 
       return fail_result(type: :unactivated_user, msg: I18n.t('errors.unactivated_account')) unless user.activated?
 
-      ActiveRecord::Base.transaction do
-        user.initiate_reset_password_process
-      end
+      user.initiate_reset_password_process
 
       Success result: { msg: I18n.t('operations.initiate_password_reset.check_email') }
     end
