@@ -8,15 +8,14 @@ class User < ApplicationRecord
   attribute :role, :enum
   enum :role, array_to_enum_hash(EnumLists::USER_ROLES), prefix: :role, validate: true
 
-  before_save :validate_uniq_admin_role
+  before_validation ->(user) { abort "It should be only one admin!" if user.class.admin_user.present? }
+  after_save :send_message_to_business
 
   scope :admin_user, -> { where(role: 'admin') }
 
   private
 
-  def validate_uniq_admin_role
-    if User.admin_user.present?
-      abort "It should be only one admin!"
-    end
+  def send_message_to_business
+    Karafka.producer.produce_sync(topic: 'users', payload: user.as_json)
   end
 end
