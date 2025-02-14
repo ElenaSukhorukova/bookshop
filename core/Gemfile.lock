@@ -93,6 +93,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.1.7)
     drb (2.2.1)
     erubi (1.13.1)
     ffi (1.17.1-aarch64-linux-gnu)
@@ -274,6 +275,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise (~> 4.9)
+  dotenv (~> 3.1.4)
   importmap-rails
   jbuilder
   karafka (>= 2.4.0)

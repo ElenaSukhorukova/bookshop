@@ -16,6 +16,6 @@ class User < ApplicationRecord
   private
 
   def send_message_to_business
-    Karafka.producer.produce_sync(topic: 'users', payload: user.as_json)
+    Karafka.producer.produce_sync(topic: 'users', payload: self.as_json.to_json)
   end
 end
