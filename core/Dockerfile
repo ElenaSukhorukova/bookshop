@@ -24,7 +24,8 @@ RUN apt-get clean all && \
     cmake \
     openssl \
     file \
-    nano
+    nano \
+    librdkafka-dev
 
 # Add permissions for the user
 RUN mkdir /app
