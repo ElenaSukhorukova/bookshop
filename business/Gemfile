@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.0'
+ruby '3.3.6'
 
 gem 'rails', '~> 8.0.0'
 
@@ -43,7 +43,7 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'rails-i18n'
 
 # dry-rb
-gem 'dry-rails', '~> 0.3'
+gem 'dry-rails', '~> 0.7'
 
 gem 'u-case', '~> 4.5.1'
 
@@ -52,6 +52,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'faraday'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
