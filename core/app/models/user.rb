@@ -1,21 +1,26 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  validate :uniq_user_admin, on: :create
+  validate :unchangebale_role, on: :update
 
   # customer employee admin
   attribute :role, :enum
   enum :role, array_to_enum_hash(EnumLists::USER_ROLES), prefix: :role, validate: true
 
-  before_validation ->(user) { abort "It should be only one admin!" if user.class.admin_user.present? }
-  after_save :send_message_to_business
+  scope :admin_user, -> { where(role: 'admin').take }
 
-  scope :admin_user, -> { where(role: 'admin') }
+  def admin?
+    role_admin?
+  end
 
   private
 
-  def send_message_to_business
-    Karafka.producer.produce_sync(topic: 'users', payload: self.as_json.to_json)
+  def uniq_user_admin
+    if role_admin? && User.admin_user.present?
+      errors.add(:role, "should be only one admin!")
+    end
+  end
+
+  def unchangebale_role
+    errors.add(:role, 'can\'t be changed') if role_changed?
   end
 end
