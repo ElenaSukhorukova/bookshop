@@ -96,6 +96,18 @@ services:
       redis:
         condition: service_healthy
 
+  storage_api:
+    image: storage_api:latest
+    build: ./storage_api
+    ports:
+      - '7000:7000'
+    volumes:
+      - .:/storage_api
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+    depends_on:
+      - postgresql
+
   # core-front:
   #   image: core-front:latest
   #   build: ./core-front
