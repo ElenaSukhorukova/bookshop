@@ -565,10 +565,11 @@ DEPENDENCIES
   dawnscanner (~> 2.2.0)
   debug
   dotenv (~> 3.1.4)
-  dry-rails (~> 0.3)
+  dry-rails (~> 0.7)
   email_spec
   factory_bot_rails
   faker
+  faraday
   figaro
   importmap-rails
   jbuilder
@@ -608,7 +609,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.2.0p0
+   ruby 3.3.6p108
 
 BUNDLED WITH
    2.4.1

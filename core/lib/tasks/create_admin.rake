@@ -1,3 +1,5 @@
+# run it with command: rails create_admin:creation
+
 namespace :create_admin do
   task :creation => [ :environment ] do
     password = '!$jlO123OF@'

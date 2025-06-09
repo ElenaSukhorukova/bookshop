@@ -58,7 +58,7 @@ services:
       - postgresql
       - redis
 
-  buisness_sidekiq:
+  business_sidekiq:
     image: buisness_sidekiq:latest
     build: ./business
     command: bundle exec sidekiq
@@ -70,21 +70,6 @@ services:
     depends_on:
       redis:
         condition: service_healthy
-
-  core-front:
-    image: core-front:latest
-    build: ./core-front
-    ports:
-      - "3000:3000"
-    volumes:
-     - .:/core-front
-     - node_modules:/app/node_modules
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      CORE_URL: ${CORE_URL}
-    stdin_open: true
-    tty: true
-    command: npm start
 
   core:
     image: core
@@ -98,6 +83,45 @@ services:
     depends_on:
       - postgresql
       - redis
+
+  core_sidekiq:
+    image: core_sidekiq:latest
+    build: ./core
+    command: bundle exec sidekiq
+    volumes:
+      - .:/core
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  storage_api:
+    image: storage_api:latest
+    build: ./storage_api
+    ports:
+      - '7000:7000'
+    volumes:
+      - .:/storage_api
+    environment:
+      RAILS_ENV: ${RAILS_ENV}
+    depends_on:
+      - postgresql
+
+  # core-front:
+  #   image: core-front:latest
+  #   build: ./core-front
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #    - .:/core-front
+  #    - node_modules:/app/node_modules
+  #   environment:
+  #     NODE_ENV: ${NODE_ENV}
+  #     CORE_URL: ${CORE_URL}
+  #   stdin_open: true
+  #   tty: true
+  #   command: npm start
 
 volumes:
   postgres_data:

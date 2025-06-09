@@ -39,7 +39,20 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
+  config.action_mailer.smtp_settings = {
+    address: ENV['SMTP_SETTINGS_EMAIL_ADDRESS'],
+    port: 465,
+    domain: ENV['SMTP_SETTINGS_DOMAIN'],
+    user_name: ENV['SMTP_SETTINGS_USER_NAME'],
+    password: ENV['SMTP_SETTINGS_PASSWORD'],
+    authentication: :plain,
+    ssl: true,
+    tsl: true,
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none'
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -75,4 +88,10 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 4000 }
+
+  # configure logger
+  Rails.logger = Logger.new(STDOUT)
+  Rails.logger.datetime_format = '%Y-%m-%d %H:%M:%S'
+
+  config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
 end
